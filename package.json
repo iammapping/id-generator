@@ -1,0 +1,24 @@
+{
+  "name": "node-id-generator",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "iammapping <meibing_240@126.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bignumber.js": "^4.0.2",
+    "@types/bluebird": "^3.5.8",
+    "@types/node": "^8.0.8",
+    "@types/redis": "^2.6.0"
+  },
+  "dependencies": {
+    "bignumber.js": "^4.0.2",
+    "bluebird": "^3.5.0",
+    "left-pad": "^1.1.3",
+    "redis": "^2.7.1"
+  }
+}
