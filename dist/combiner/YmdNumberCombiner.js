@@ -26,7 +26,7 @@ var YmdNumberCombiner = (function (_super) {
     }
     YmdNumberCombiner.prototype.toIds = function (response) {
         var timestamp = response.getTimeMilliSeconds();
-        var datetime = new Date(timestamp);
+        var datetime = new Date(timestamp + (new Date().getTimezoneOffset() * 60 * 1000 + response.getTimezoneOffset()));
         var idPrefix = String(datetime.getFullYear()).substr(2) +
             leftPad(datetime.getMonth() + 1, 2, 0) +
             leftPad(datetime.getDate(), 2, 0);

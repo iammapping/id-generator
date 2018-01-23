@@ -48,6 +48,13 @@ var SnowFlakeCombiner = (function (_super) {
         }
         return ids;
     };
+    Object.defineProperty(SnowFlakeCombiner.prototype, "OFFSET", {
+        get: function () {
+            return 0;
+        },
+        enumerable: true,
+        configurable: true
+    });
     // We specify an custom epoch that we will use to fit our timestamps within the bounds of the 41 bits we have
     // available. This gives us a range of ~69 years within which we can generate IDs.
     //

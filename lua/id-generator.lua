@@ -2,17 +2,21 @@ local key_prefix = KEYS[1]
 
 local millitimestamp = tonumber(ARGV[1])
 local interval = tonumber(ARGV[2]) or 1
-local max_sequence = tonumber(ARGV[3]) or 4095
-local num_ids = tonumber(ARGV[4]) or 1
+local offset = tonumber(ARGV[3]) or 0
+local max_sequence = tonumber(ARGV[4]) or 4095
+local num_ids = tonumber(ARGV[5]) or 1
 
 local time_key = key_prefix .. '-time'
 local sequence_key = key_prefix .. '-seq'
 local global_logical_shard_id_key = 'global-logical-shard-id-default'
 
-local now_time_interval = tostring(math.floor(millitimestamp / interval))
+--[[
+add timezone offset to timestamp
+--]]
+local now_time_interval = tostring(math.floor((millitimestamp + offset) / interval))
 
 local last_time = redis.call('GET', time_key) or 0;
-local last_time_interval = tostring(math.floor(last_time / interval))
+local last_time_interval = tostring(math.floor((last_time + offset) / interval))
 
 --[[
 check system clock
@@ -58,5 +62,6 @@ return {
   end_sequence,
   hit_top,
   logical_shard_id,
-  millitimestamp
+  millitimestamp,
+  offset
 }

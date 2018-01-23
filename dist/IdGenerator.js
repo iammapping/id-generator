@@ -152,7 +152,13 @@ var IdGenerator = (function () {
         return this.getLuaScriptSha().then(function (luaScriptSha) {
             return redis.time().then(function (time) {
                 var millitimestamps = parseInt(time[0]) * Consts_1.ONE_SECOND_IN_MILLIS + Math.ceil(parseInt(time[1]) / Consts_1.ONE_MILLI_IN_MICRO_SECS);
-                return redis.evalLuaScript(luaScriptSha, [_this.combiner.KEY_PREFIX], [String(millitimestamps), String(_this.combiner.INTERVAL), String(_this.combiner.MAX_SEQUENCE), String(batchSize)]);
+                return redis.evalLuaScript(luaScriptSha, [_this.combiner.KEY_PREFIX], [
+                    String(millitimestamps),
+                    String(_this.combiner.INTERVAL),
+                    String(_this.combiner.OFFSET),
+                    String(_this.combiner.MAX_SEQUENCE),
+                    String(batchSize)
+                ]);
             });
         });
     };

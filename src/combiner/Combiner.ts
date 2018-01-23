@@ -14,12 +14,14 @@ export interface Combiner<T> {
   MIN_LOGICAL_SHARD_ID: number;
   MAX_BATCH_SIZE: number;
   INTERVAL: number;
+  OFFSET: number;
 }
 
 export class BaseCombiner {
   public constructor(
     protected keyPrefix: string = 'id-generator',
     protected interval: number = 1,
+    protected offset: number = -(new Date().getTimezoneOffset() * 60 * 1000),
     protected logicalShardIdBits: number = 10,
     protected sequenceBits: number = 12,
     protected minLogicalShardId: number = 0
@@ -63,5 +65,9 @@ export class BaseCombiner {
 
   public get INTERVAL() {
     return this.interval;
+  }
+
+  public get OFFSET() {
+    return this.offset;
   }
 }

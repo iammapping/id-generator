@@ -1,4 +1,3 @@
-
 /**
  * The response from the Icicle ID generation script.
  *
@@ -19,12 +18,14 @@ export class IdRedisResponse {
   private static readonly HIT_THE_TOP_INDEX: number = 2;
   private static readonly LOGICAL_SHARD_ID_INDEX: number = 3;
   private static readonly TIME_MILLISECONDS_INDEX: number = 4;
+  private static readonly TIMEZONE_OFFSET_INDEX: number = 5;
 
   private startSequence: number;
   private endSequence: number;
   private hasHitTheTop: boolean;
   private logicalShardId: number;
   private timeMilliSeconds: number;
+  private timezoneOffset: number;
 
   /**
    * Create an instance of the response from the ID generation Lua script.
@@ -37,6 +38,7 @@ export class IdRedisResponse {
     this.hasHitTheTop = !!results[IdRedisResponse.HIT_THE_TOP_INDEX];
     this.logicalShardId = results[IdRedisResponse.LOGICAL_SHARD_ID_INDEX];
     this.timeMilliSeconds = results[IdRedisResponse.TIME_MILLISECONDS_INDEX];
+    this.timezoneOffset = results[IdRedisResponse.TIMEZONE_OFFSET_INDEX];
   }
 
   public getStartSequence(): number {
@@ -57,5 +59,9 @@ export class IdRedisResponse {
 
   public getTimeMilliSeconds(): number {
     return this.timeMilliSeconds;
+  }
+
+  public getTimezoneOffset(): number {
+    return this.timezoneOffset;
   }
 }

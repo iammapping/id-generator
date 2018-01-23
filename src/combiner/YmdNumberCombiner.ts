@@ -17,7 +17,7 @@ export class YmdNumberCombiner extends BaseCombiner implements Combiner<YmdNumbe
 
   public toIds(response: IdRedisResponse): Array<YmdNumberId> {
     let timestamp = response.getTimeMilliSeconds();
-    let datetime = new Date(timestamp);
+    let datetime = new Date(timestamp + (new Date().getTimezoneOffset() * 60 * 1000 + response.getTimezoneOffset()));
     let idPrefix = String(datetime.getFullYear()).substr(2) + 
       leftPad(datetime.getMonth() + 1, 2, 0) +
       leftPad(datetime.getDate(), 2, 0);

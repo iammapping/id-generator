@@ -18,11 +18,13 @@ export declare class IdRedisResponse {
     private static readonly HIT_THE_TOP_INDEX;
     private static readonly LOGICAL_SHARD_ID_INDEX;
     private static readonly TIME_MILLISECONDS_INDEX;
+    private static readonly TIMEZONE_OFFSET_INDEX;
     private startSequence;
     private endSequence;
     private hasHitTheTop;
     private logicalShardId;
     private timeMilliSeconds;
+    private timezoneOffset;
     /**
      * Create an instance of the response from the ID generation Lua script.
      * @param results The list of long values returned by the Lua script. If this param is null, a NullPointerException
@@ -34,4 +36,5 @@ export declare class IdRedisResponse {
     getHitTheTop(): boolean;
     getLogicalShardId(): number;
     getTimeMilliSeconds(): number;
+    getTimezoneOffset(): number;
 }

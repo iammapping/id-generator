@@ -174,7 +174,13 @@ export class IdGenerator<T> {
         return redis.evalLuaScript(
           luaScriptSha, 
           [this.combiner.KEY_PREFIX],
-          [String(millitimestamps), String(this.combiner.INTERVAL), String(this.combiner.MAX_SEQUENCE), String(batchSize)]
+          [
+            String(millitimestamps), 
+            String(this.combiner.INTERVAL),
+            String(this.combiner.OFFSET),
+            String(this.combiner.MAX_SEQUENCE), 
+            String(batchSize)
+          ]
         );
       });
     });

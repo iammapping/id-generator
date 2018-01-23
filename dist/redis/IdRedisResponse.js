@@ -26,6 +26,7 @@ var IdRedisResponse = (function () {
         this.hasHitTheTop = !!results[IdRedisResponse.HIT_THE_TOP_INDEX];
         this.logicalShardId = results[IdRedisResponse.LOGICAL_SHARD_ID_INDEX];
         this.timeMilliSeconds = results[IdRedisResponse.TIME_MILLISECONDS_INDEX];
+        this.timezoneOffset = results[IdRedisResponse.TIMEZONE_OFFSET_INDEX];
     }
     IdRedisResponse.prototype.getStartSequence = function () {
         return this.startSequence;
@@ -42,11 +43,15 @@ var IdRedisResponse = (function () {
     IdRedisResponse.prototype.getTimeMilliSeconds = function () {
         return this.timeMilliSeconds;
     };
+    IdRedisResponse.prototype.getTimezoneOffset = function () {
+        return this.timezoneOffset;
+    };
     IdRedisResponse.START_SEQUENCE_INDEX = 0;
     IdRedisResponse.END_SEQUENCE_INDEX = 1;
     IdRedisResponse.HIT_THE_TOP_INDEX = 2;
     IdRedisResponse.LOGICAL_SHARD_ID_INDEX = 3;
     IdRedisResponse.TIME_MILLISECONDS_INDEX = 4;
+    IdRedisResponse.TIMEZONE_OFFSET_INDEX = 5;
     return IdRedisResponse;
 }());
 exports.IdRedisResponse = IdRedisResponse;

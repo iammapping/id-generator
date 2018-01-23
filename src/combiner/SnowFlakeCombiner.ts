@@ -48,4 +48,8 @@ export class SnowFlakeCombiner extends BaseCombiner implements Combiner<SnowFlak
 
     return ids;
   }
+
+  public get OFFSET(): number {
+    return 0;
+  }
 }

@@ -11,14 +11,16 @@ export interface Combiner<T> {
     MIN_LOGICAL_SHARD_ID: number;
     MAX_BATCH_SIZE: number;
     INTERVAL: number;
+    OFFSET: number;
 }
 export declare class BaseCombiner {
     protected keyPrefix: string;
     protected interval: number;
+    protected offset: number;
     protected logicalShardIdBits: number;
     protected sequenceBits: number;
     protected minLogicalShardId: number;
-    constructor(keyPrefix?: string, interval?: number, logicalShardIdBits?: number, sequenceBits?: number, minLogicalShardId?: number);
+    constructor(keyPrefix?: string, interval?: number, offset?: number, logicalShardIdBits?: number, sequenceBits?: number, minLogicalShardId?: number);
     readonly KEY_PREFIX: string;
     readonly LOGICAL_SHARD_ID_BITS: number;
     readonly SEQUENCE_BITS: number;
@@ -29,4 +31,5 @@ export declare class BaseCombiner {
     readonly MIN_LOGICAL_SHARD_ID: number;
     readonly MAX_BATCH_SIZE: number;
     readonly INTERVAL: number;
+    readonly OFFSET: number;
 }
