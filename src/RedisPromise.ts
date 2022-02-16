@@ -45,4 +45,8 @@ export class RedisPromise implements Redis {
             })
         });
     }
+
+    public end() {
+        this.redis.end(true);
+    }
 }

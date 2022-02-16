@@ -22,4 +22,5 @@ export declare class RoundRobinRedisPool {
      * @return The instance of Redis as pulled from the pool.
      */
     getNextRedis(): Redis;
+    end(): void;
 }

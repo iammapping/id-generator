@@ -1,4 +1,3 @@
-/// <reference types="bluebird" />
 import * as Promise from 'bluebird';
 import { RoundRobinRedisPool } from './redis/RoundRobinRedisPool';
 import { Combiner } from "./combiner/Combiner";
@@ -11,8 +10,8 @@ export declare class IdGenerator<T> {
     private luaScript;
     private luaScriptSha;
     constructor(roundRobinRedisPool: RoundRobinRedisPool, combiner?: Combiner<T>, maximumAttempts?: number);
-    private loadLuaScript();
-    private getLuaScriptSha();
+    private loadLuaScript;
+    private getLuaScriptSha;
     /**
      * Generate an ID. It will try to generate an ID, retrying up to `maximumAttempts` times.
      *
@@ -37,7 +36,7 @@ export declare class IdGenerator<T> {
      * @return An optional list of IDs. It will be present if it was successful, and absent if for any reason the response was
      * null. The number of IDs may be less than or equal to the batch size depending on if the sequence needs to roll in Redis.
      */
-    private generateIdsUsingRedis(redis, batchSize, ids);
+    private generateIdsUsingRedis;
     /**
      * Try executing the Lua script using the SHA of its contents.
      *
@@ -56,7 +55,7 @@ export declare class IdGenerator<T> {
      * @param batchSize The number to increment the sequence by in Redis.
      * @return The result of executing the Lua script.
      */
-    private executeOrLoadLuaScript(redis, batchSize);
+    private executeOrLoadLuaScript;
     /**
      * Execute the ID generation Lua script on the given redis instance, returning the results.
      *
@@ -65,5 +64,5 @@ export declare class IdGenerator<T> {
      * @return The optional result of executing the Lua script. Absent if the Lua script referenced by the SHA was missing
      * when it was attempted to be executed.
      */
-    private executeLuaScript(redis, batchSize);
+    private executeLuaScript;
 }

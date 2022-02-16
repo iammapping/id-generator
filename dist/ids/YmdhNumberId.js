@@ -15,26 +15,14 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SixtyTwoDecimalId = void 0;
-var SnowFlakeId_1 = require("./SnowFlakeId");
-var SixtyTwoDecimalId = /** @class */ (function (_super) {
-    __extends(SixtyTwoDecimalId, _super);
-    function SixtyTwoDecimalId() {
+exports.YmdhNumberId = void 0;
+var StringId_1 = require("./StringId");
+var YmdhNumberId = /** @class */ (function (_super) {
+    __extends(YmdhNumberId, _super);
+    function YmdhNumberId() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    SixtyTwoDecimalId.prototype.getCode = function () {
-        var code = '';
-        var dec = this.getId();
-        do {
-            code = SixtyTwoDecimalId.SIXTY_TWO_ALPHABET[dec.mod(62).toNumber()] + code;
-            dec = dec.divToInt(62);
-        } while (dec.gt(0));
-        return code;
-    };
-    SixtyTwoDecimalId.prototype.toString = function () {
-        return this.getCode();
-    };
-    SixtyTwoDecimalId.SIXTY_TWO_ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    return SixtyTwoDecimalId;
-}(SnowFlakeId_1.SnowFlakeId));
-exports.SixtyTwoDecimalId = SixtyTwoDecimalId;
+    return YmdhNumberId;
+}(StringId_1.StringId));
+exports.YmdhNumberId = YmdhNumberId;
+;

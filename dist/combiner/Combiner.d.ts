@@ -21,15 +21,15 @@ export declare class BaseCombiner {
     protected sequenceBits: number;
     protected minLogicalShardId: number;
     constructor(keyPrefix?: string, interval?: number, offset?: number, logicalShardIdBits?: number, sequenceBits?: number, minLogicalShardId?: number);
-    readonly KEY_PREFIX: string;
-    readonly LOGICAL_SHARD_ID_BITS: number;
-    readonly SEQUENCE_BITS: number;
-    readonly TIMESTAMP_SHIFT: number;
-    readonly LOGICAL_SHARD_ID_SHIFT: number;
-    readonly MAX_SEQUENCE: number;
-    readonly MAX_LOGICAL_SHARD_ID: number;
-    readonly MIN_LOGICAL_SHARD_ID: number;
-    readonly MAX_BATCH_SIZE: number;
-    readonly INTERVAL: number;
-    readonly OFFSET: number;
+    get KEY_PREFIX(): string;
+    get LOGICAL_SHARD_ID_BITS(): number;
+    get SEQUENCE_BITS(): number;
+    get TIMESTAMP_SHIFT(): number;
+    get LOGICAL_SHARD_ID_SHIFT(): number;
+    get MAX_SEQUENCE(): number;
+    get MAX_LOGICAL_SHARD_ID(): number;
+    get MIN_LOGICAL_SHARD_ID(): number;
+    get MAX_BATCH_SIZE(): number;
+    get INTERVAL(): number;
+    get OFFSET(): number;
 }

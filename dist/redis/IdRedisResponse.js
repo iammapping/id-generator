@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.IdRedisResponse = void 0;
 /**
  * The response from the Icicle ID generation script.
  *
@@ -14,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * Create an instance of this by passing the result you get back from executing the Lua script with your chosen Redis
  * library.
  */
-var IdRedisResponse = (function () {
+var IdRedisResponse = /** @class */ (function () {
     /**
      * Create an instance of the response from the ID generation Lua script.
      * @param results The list of long values returned by the Lua script. If this param is null, a NullPointerException

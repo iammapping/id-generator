@@ -10,13 +10,16 @@ local time_key = key_prefix .. '-time'
 local sequence_key = key_prefix .. '-seq'
 local global_logical_shard_id_key = 'global-logical-shard-id-default'
 
+local interval_to_expires = math.floor(interval / 1000)
+local default_key_expires = 60
+
 --[[
 add timezone offset to timestamp
 --]]
-local now_time_interval = tostring(math.floor((millitimestamp + offset) / interval))
+local now_time_interval = math.floor((millitimestamp + offset) / interval)
 
 local last_time = redis.call('GET', time_key) or 0;
-local last_time_interval = tostring(math.floor((last_time + offset) / interval))
+local last_time_interval = math.floor((last_time + offset) / interval)
 
 --[[
 check system clock
@@ -31,8 +34,8 @@ end
 reset sequence and lock
 --]]
 if last_time_interval < now_time_interval then
-  redis.call('SET', sequence_key, '0')
-  redis.call('SET', time_key, millitimestamp)
+  redis.call('SETEX', sequence_key, interval_to_expires + default_key_expires, '0')
+  redis.call('SETEX', time_key, interval_to_expires + default_key_expires, millitimestamp)
 end
 
 --[[

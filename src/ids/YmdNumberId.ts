@@ -1,8 +1,4 @@
-import { Id } from "./Id";
+import { StringId } from './StringId';
 
 
-export class YmdNumberId extends Id<string> {
-  public toString(): string {
-    return this.getId();
-  }
-}
+export class YmdNumberId extends StringId {};

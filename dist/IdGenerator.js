@@ -1,12 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.IdGenerator = void 0;
 var SnowFlakeCombiner_1 = require("./combiner/SnowFlakeCombiner");
 var path_1 = require("path");
 var fs_1 = require("fs");
 var crypto = require("crypto");
 var Promise = require("bluebird");
 var Consts_1 = require("./Consts");
-var IdGenerator = (function () {
+var IdGenerator = /** @class */ (function () {
     function IdGenerator(roundRobinRedisPool, combiner, maximumAttempts) {
         if (combiner === void 0) { combiner = (new SnowFlakeCombiner_1.SnowFlakeCombiner()); }
         if (maximumAttempts === void 0) { maximumAttempts = IdGenerator.DEFAULT_MAX_ATTEMPTS; }
@@ -21,7 +22,7 @@ var IdGenerator = (function () {
         }
         else {
             return new Promise(function (resolve, reject) {
-                fs_1.readFile(IdGenerator.LUA_SCRIPT_RESOURCE_PATH, 'utf8', function (err, data) {
+                (0, fs_1.readFile)(IdGenerator.LUA_SCRIPT_RESOURCE_PATH, 'utf8', function (err, data) {
                     if (err) {
                         return reject(err);
                     }
@@ -162,7 +163,7 @@ var IdGenerator = (function () {
             });
         });
     };
-    IdGenerator.LUA_SCRIPT_RESOURCE_PATH = path_1.resolve(__dirname, "../lua/id-generator.lua");
+    IdGenerator.LUA_SCRIPT_RESOURCE_PATH = (0, path_1.resolve)(__dirname, "../lua/id-generator.lua");
     IdGenerator.DEFAULT_MAX_ATTEMPTS = 5;
     return IdGenerator;
 }());

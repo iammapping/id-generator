@@ -33,10 +33,15 @@ export class RoundRobinRedisPool {
    */
   public getNextRedis(): Redis {
     this.index++;
-    if (this.index === this.redisServers.length) {
+    if (this.index >= this.redisServers.length) {
       this.index = 0;
     }
 
     return this.redisServers[this.index];
+  }
+
+  public end() {
+    this.redisServers.forEach(r => r.end());
+    this.redisServers.length = 0;
   }
 }

@@ -15,23 +15,26 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.YmdNumberCombiner = void 0;
-var YmdNumberId_1 = require("../ids/YmdNumberId");
+exports.YmdhNumberCombiner = void 0;
+var Consts_1 = require("./../Consts");
+var YmdhNumberId_1 = require("../ids/YmdhNumberId");
 var leftPad = require("left-pad");
 var DateNumberCombiner_1 = require("./DateNumberCombiner");
-var YmdNumberCombiner = /** @class */ (function (_super) {
-    __extends(YmdNumberCombiner, _super);
-    function YmdNumberCombiner() {
-        return _super !== null && _super.apply(this, arguments) || this;
+var YmdhNumberCombiner = /** @class */ (function (_super) {
+    __extends(YmdhNumberCombiner, _super);
+    function YmdhNumberCombiner(keyPrefix) {
+        if (keyPrefix === void 0) { keyPrefix = '0:ymdh'; }
+        return _super.call(this, keyPrefix, Consts_1.ONE_HOUR_IN_MILLIS, 2) || this;
     }
-    YmdNumberCombiner.prototype.toTimePrefix = function (datetime) {
+    YmdhNumberCombiner.prototype.toTimePrefix = function (datetime) {
         return String(datetime.getFullYear()).substring(2) +
             leftPad(datetime.getMonth() + 1, 2, 0) +
-            leftPad(datetime.getDate(), 2, 0);
+            leftPad(datetime.getDate(), 2, 0) +
+            leftPad(datetime.getHours(), 2, 0);
     };
-    YmdNumberCombiner.prototype.toIds = function (response) {
-        return _super.prototype.toIds.call(this, response).map(function (id) { return new YmdNumberId_1.YmdNumberId(id.getId(), id.getTime()); });
+    YmdhNumberCombiner.prototype.toIds = function (response) {
+        return _super.prototype.toIds.call(this, response).map(function (id) { return new YmdhNumberId_1.YmdhNumberId(id.getId(), id.getTime()); });
     };
-    return YmdNumberCombiner;
+    return YmdhNumberCombiner;
 }(DateNumberCombiner_1.DateNumberCombiner));
-exports.YmdNumberCombiner = YmdNumberCombiner;
+exports.YmdhNumberCombiner = YmdhNumberCombiner;

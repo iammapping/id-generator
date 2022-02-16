@@ -7,3 +7,4 @@ export const DEFAULT_CUSTOM_EPOCH: number = 1455788600316;
 export const ONE_SECOND_IN_MILLIS: number = 1000;
 export const ONE_MILLI_IN_MICRO_SECS: number = 1000;
 export const ONE_DAY_IN_MILLIS: number = 24 * 60 * 60 * 1000;
+export const ONE_HOUR_IN_MILLIS: number = 60 * 60 * 1000;

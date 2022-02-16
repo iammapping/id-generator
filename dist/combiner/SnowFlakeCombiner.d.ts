@@ -6,5 +6,5 @@ export declare class SnowFlakeCombiner extends BaseCombiner implements Combiner<
     private static readonly DEFAULT_CUSTOM_EPOCH;
     constructor(customEpoch?: number);
     toIds(response: IdRedisResponse): Array<SnowFlakeId>;
-    readonly OFFSET: number;
+    get OFFSET(): number;
 }

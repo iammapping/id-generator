@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.RoundRobinRedisPool = void 0;
 /**
  * A wrapper around a list of redis instances to provide round robin behaviour for a group of servers.
  *
@@ -7,7 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * distributed manner. An example is to use the redis servers for ID generation and timestamp oracle
  * behaviour.
  */
-var RoundRobinRedisPool = (function () {
+var RoundRobinRedisPool = /** @class */ (function () {
     /**
      * Creates a new round robin redis pool from the given list of servers.
      *
@@ -28,10 +29,14 @@ var RoundRobinRedisPool = (function () {
      */
     RoundRobinRedisPool.prototype.getNextRedis = function () {
         this.index++;
-        if (this.index === this.redisServers.length) {
+        if (this.index >= this.redisServers.length) {
             this.index = 0;
         }
         return this.redisServers[this.index];
+    };
+    RoundRobinRedisPool.prototype.end = function () {
+        this.redisServers.forEach(function (r) { return r.end(); });
+        this.redisServers.length = 0;
     };
     return RoundRobinRedisPool;
 }());

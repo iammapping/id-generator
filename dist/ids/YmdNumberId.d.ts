@@ -1,4 +1,3 @@
-import { Id } from "./Id";
-export declare class YmdNumberId extends Id<string> {
-    toString(): string;
+import { StringId } from './StringId';
+export declare class YmdNumberId extends StringId {
 }
